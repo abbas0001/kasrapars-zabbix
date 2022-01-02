@@ -1,0 +1,8 @@
+#!/bin/bash
+
+./kasrapars.sh > tmp.txt
+TIME=$(grep '1 passing' tmp.txt | awk '{print $7}' | tr -d '()s' | sed 's/[^0-9.]//g')
+GREP=$(grep '1 passing' tmp.txt)
+zabbix_sender -z 192.168.212.3 -p 10051 -s "kasrapars" -k time -o $TIME
+zabbix_sender -z 192.168.212.3 -p 10051 -s "kasrapars" -k log -o "$GREP"
+rm tmp.txt
