@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ./kasrapars.sh > tmp.txt
-TIME=$(grep '1 passing' tmp.txt | awk '{print $7}' | tr -d '()s' | sed 's/[^0-9.]//g')
+TIME=$(grep '1 passing' tmp.txt | awk '{print $7}' | tr -d '()s' | sed 's/[^0-9.]//g' | sed 's/..$//')
 grep '1 passing' tmp.txt
 if [ $? -eq 0 ]
 then
